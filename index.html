@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>PlateWise — Menu Scan</title>
+<meta name="description" content="PlateWise: point your phone at a menu and get one confident recommendation in seconds." />
+<meta name="theme-color" content="#6B9E7E" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="icon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="icon.svg" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="PlateWise" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;0,600;1,500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="phone">
+
+  <header class="appbar">
+    <span class="appbar-mark">PlateWise</span>
+    <span class="appbar-goal" id="goalChip">Goal · Build muscle</span>
+  </header>
+
+  <main class="stage">
+
+    <!-- SCREEN 1 — SCAN -->
+    <section class="screen active" id="screen-scan" aria-label="Scan menu">
+      <div class="viewfinder" id="viewfinder">
+        <video id="camera" autoplay playsinline muted></video>
+        <div class="viewfinder-empty" id="viewfinderEmpty">
+          <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M4 8a2 2 0 0 1 2-2h1.2l.9-1.4A2 2 0 0 1 9.8 3.8h4.4a2 2 0 0 1 1.7.9L16.8 6H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z"/>
+            <circle cx="12" cy="13" r="3.4"/>
+          </svg>
+          <p>Camera not available on this device — using a sample menu instead.</p>
+        </div>
+        <div class="bracket bracket-tl"></div>
+        <div class="bracket bracket-tr"></div>
+        <div class="bracket bracket-bl"></div>
+        <div class="bracket bracket-br"></div>
+        <div class="viewfinder-hint">Fill the frame with the menu</div>
+      </div>
+
+      <div class="scan-meta">
+        <span class="place">Trattoria Sonnenallee</span>
+        <span class="timer"><span class="dot"></span><span id="timerText">0:00</span></span>
+      </div>
+
+      <button class="shutter" id="shutterBtn" aria-label="Scan menu">
+        <span class="shutter-ring"></span>
+      </button>
+      <p class="shutter-caption">Tap to scan</p>
+    </section>
+
+    <!-- SCREEN 2 — ANALYZING -->
+    <section class="screen" id="screen-analyzing" aria-label="Reading menu">
+      <div class="menu-sheet" id="analyzingSheet">
+        <div class="menu-sheet-scanline"></div>
+        <!-- lines injected by script.js -->
+      </div>
+      <div class="status-row">
+        <div class="spinner"></div>
+        <p class="status-text" id="statusText">Reading menu…</p>
+      </div>
+    </section>
+
+    <!-- SCREEN 3 — RESULT -->
+    <section class="screen" id="screen-result" aria-label="Recommendation">
+      <div class="menu-sheet result-sheet" id="resultSheet">
+        <!-- lines + highlight injected by script.js -->
+      </div>
+
+      <div class="rec-card" id="recCard">
+        <div class="rec-card-top">
+          <span class="rec-badge">Best match</span>
+          <span class="rec-confidence">92% fit</span>
+        </div>
+        <h2 class="rec-name" id="recName">Chicken Saltimbocca</h2>
+        <p class="rec-reason" id="recReason">38g protein, grilled not fried — fits your muscle-building goal better than anything else on this menu.</p>
+        <button class="cta" id="orderBtn">Tell the waiter</button>
+        <p class="cta-confirm" id="ctaConfirm" aria-live="polite"></p>
+
+        <div class="alt-list" id="altList">
+          <!-- alternates injected by script.js -->
+        </div>
+      </div>
+
+      <button class="rescan-link" id="rescanBtn">Scan another menu</button>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
